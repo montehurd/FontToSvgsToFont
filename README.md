@@ -15,7 +15,7 @@ This converts a ttf font into a folder of svgs naming the svg files according to
     makeFontFromSvgs.py
 
 
-This rebuilds the font from the folder of svgs and font.json and also creates an html file referencing the rebuilt font for easier proofing.
+This rebuilds the font from the folder of svgs and font.json and also creates an html file referencing the rebuilt font for easier proofing. Note: you may need to close and re-open your browser to see changes made to the html file.
 
 
 Both scripts require FontForge. They have only been tested on Ubuntu.
