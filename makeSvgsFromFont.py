@@ -1,14 +1,17 @@
 #!/usr/local/bin/fontforge
 
+# Created by Monte Hurd on 11/06/14.
+# Copyright (c) 2014 Monte Hurd. Provided under MIT-style license; please copy and modify!
+#
 # Extracts svg for each glyph in "./font.ttf" to "./svgs/" folder.
 # Also extracts font settings to "./font.json" file.
-
+#
 # The svgs can then be edited (or added/removed) and the 
 # "makeFontFromSvgs.py" script can be run to rebuild the
 # font from the svgs.
-
+#
 # See "makeFontFromSvgs.py" for svg file naming convention.
-
+#
 # Invoke with command:
 #    fontforge -script makeSvgsFromFont.py
 #
