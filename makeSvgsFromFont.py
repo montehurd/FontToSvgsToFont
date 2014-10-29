@@ -19,6 +19,8 @@
 import fontforge
 import json
 import os
+import sys
+import fileinput
 
 # Ensure the svgs folder exists.
 svgFolder = "./svgs/"
@@ -38,9 +40,11 @@ print font.fontname
 print "\nExporting svgs:"
 for g in font.glyphs():
   if g.unicode != -1:
-    svgPath = "%s%04X %s %d %d %d.svg" % (svgFolder, g.unicode, g.glyphname, g.left_side_bearing, g.right_side_bearing, g.boundingBox()[1])
+    svgPath = "%s%04X %s %d.svg" % (svgFolder, g.unicode, g.glyphname, g.boundingBox()[1])
     print "\t%s" % (svgPath)
     g.export(svgPath)
+    for line in fileinput.input(svgPath, inplace=1):
+        print line.replace("<svg viewBox", '<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox'),
 
 # Export font settings to json.
 fontInfo = {

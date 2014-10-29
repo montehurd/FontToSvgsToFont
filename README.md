@@ -46,13 +46,13 @@ It will also extract font settings to "./font.json" file.
 Svg's are named according to following convention:
 
 
-    UNICODE_CHAR GLYPH_NAME LEFT_BEARING RIGHT_BEARING BASELINE_OFFSET.svg
+    UNICODE_CHAR GLYPH_NAME BASELINE_OFFSET.svg
 
 
-Example: "e950 MY_GLYPH 80 100 150.svg"
+Example: "e950 MY_GLYPH 150.svg"
 
 
-This svg will be mapped to the font character e950 with glyph name "MY_GLYPH" and left bearing (padding) of 80, right bearing of 100 and will sit 150 above the baseline.
+This svg will be mapped to the font character e950 with glyph name "MY_GLYPH" and will sit 150 above the baseline.
 
 
 Once you make changes to the svgs, font.ttf can be rebuild with this command:

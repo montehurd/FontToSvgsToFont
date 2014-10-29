@@ -5,12 +5,11 @@
 #
 # Makes "./font.ttf" from svg files found in "./svgs/".
 # Svg's must be named according to following convention:
-#     "UNICODE_CHAR GLYPH_NAME LEFT_BEARING RIGHT_BEARING BASELINE_OFFSET.svg"
+#     "UNICODE_CHAR GLYPH_NAME BASELINE_OFFSET.svg"
 #
-# Example: "e950 MY_GLYPH 80 100 150.svg"
+# Example: "e950 MY_GLYPH 150.svg"
 #	   This will be mapped to the font character e950 with glyph
-#          name "MyGlyph" and left bearing (padding) of 80, right
-#          bearing of 100 and will sit 150 above the baseline.
+#          name "MyGlyph" and will sit 150 above the baseline.
 #
 # Note: running the "makeSvgsFromFont.py" script will generate
 #     such an svg (named according to the convention) for each 
@@ -58,14 +57,12 @@ glyphDictionaries = []
 for fullName in glob.glob(svgFolder + '*.svg'):
     fullName = fullName[len(svgFolder):]
     words = fullName.split()
-    if (len(words) == 5):
+    if (len(words) == 3):
         glyphDictionary = {}
         glyphDictionary["fullName"] = fullName
         glyphDictionary["unicodeChar"] = words[0]
         glyphDictionary["name"] = words[1]
-        glyphDictionary["bearingLeft"] = words[2]
-        glyphDictionary["bearingRight"] = words[3]
-        glyphDictionary["baselineOffset"] = words[4][:-4]
+        glyphDictionary["baselineOffset"] = words[2][:-4]
         glyphDictionaries.append(glyphDictionary)
 
 # Sort it!
@@ -84,10 +81,6 @@ for glyphDictionary in glyphDictionaries:
         ymin = glyph.boundingBox()[1]
         glyph.transform([1, 0, 0, 1, 0, -ymin + int(glyphDictionary["baselineOffset"])])
         
-        # Set glyph side bearings with values from file name.
-        glyph.left_side_bearing = int(glyphDictionary["bearingLeft"])
-        glyph.right_side_bearing = int(glyphDictionary["bearingRight"])
-
 # Run various fontforge methods.
 #font.canonicalContours()
 font.round() # Needed to make simplify more reliable.
