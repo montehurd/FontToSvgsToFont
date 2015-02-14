@@ -118,6 +118,10 @@ cssFileContentsHeader = """
     font-weight: normal;
     line-height: 2.0em;
     overflow: visible;
+    background-color:#eeeeee;
+    border-width:4px;
+    border-color:#ffffff;
+    border-style:solid;
 }
 .glyph[dir='rtl'] {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
@@ -192,9 +196,7 @@ file.write("<h1>Glyphs</h1>")
 # Grid of glyphs for top of html file.
 counter = 0
 for glyphDictionary in glyphDictionaries:
-        divForGlyph = """
-            <span class="glyph %s"></span>
-        """
+        divForGlyph = """<span class="glyph %s"></span>"""
 	divForGlyph = divForGlyph % (glyphDictionary["name"])
         file.write(divForGlyph)
 	counter += 1
