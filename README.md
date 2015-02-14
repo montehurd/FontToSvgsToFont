@@ -2,7 +2,7 @@ Editing fonts can be hard and editing them with FontForge is an absolute UX nigh
 
 The purpose of this repo is to make it easy to convert a ttf font into a folder of svgs which can be edited/added/removed and then re-imported into the font.
 
-Because Svgs don't have awareness of font specific settings such as baseline offset, em size, glyph character mapping etc, the svgs extracted from the font are named in such a way to preserve this info. A file called font.json is also made to preserve some of the non-glyph settings from the font. In this way the extraction step is made reversible.
+Because Svgs don't have awareness of font specific settings such as glyph character mapping, the svgs extracted from the font are named in such a way to preserve this info. A file called font.json is also made to preserve some of the non-glyph settings from the font. In this way the extraction step is made reversible.
 
 Two scripts automate the Font to Svg and Svg to Font conversion:
 
@@ -46,13 +46,13 @@ It will also extract font settings to "./font.json" file.
 Svg's are named according to following convention:
 
 
-    UNICODE_CHAR GLYPH_NAME BASELINE_OFFSET.svg
+    UNICODE_CHAR GLYPH_NAME.svg
 
 
 Example: "e950 MY_GLYPH 150.svg"
 
 
-This svg will be mapped to the font character e950 with glyph name "MY_GLYPH" and will sit 150 above the baseline.
+This svg will be mapped to the font character e950 with glyph name "MY_GLYPH".
 
 
 Once you make changes to the svgs, font.ttf can be rebuild with this command:

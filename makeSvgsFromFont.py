@@ -40,7 +40,7 @@ print font.fontname
 print "\nExporting svgs:"
 for g in font.glyphs():
   if g.unicode != -1:
-    svgPath = "%s%04X %s %d.svg" % (svgFolder, g.unicode, g.glyphname, g.boundingBox()[1])
+    svgPath = "%s%04X %s.svg" % (svgFolder, g.unicode, g.glyphname)
     print "\t%s" % (svgPath)
     g.export(svgPath)
     for line in fileinput.input(svgPath, inplace=1):

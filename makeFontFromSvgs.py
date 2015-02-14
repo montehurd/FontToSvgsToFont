@@ -5,11 +5,11 @@
 #
 # Makes "./font.ttf" from svg files found in "./svgs/".
 # Svg's must be named according to following convention:
-#     "UNICODE_CHAR GLYPH_NAME BASELINE_OFFSET.svg"
+#     "UNICODE_CHAR GLYPH_NAME.svg"
 #
 # Example: "e950 MY_GLYPH 150.svg"
 #	   This will be mapped to the font character e950 with glyph
-#          name "MyGlyph" and will sit 150 above the baseline.
+#          name "MyGlyph".
 #
 # Note: running the "makeSvgsFromFont.py" script will generate
 #     such an svg (named according to the convention) for each 
@@ -57,12 +57,11 @@ glyphDictionaries = []
 for fullName in glob.glob(svgFolder + '*.svg'):
     fullName = fullName[len(svgFolder):]
     words = fullName.split()
-    if (len(words) == 3):
+    if (len(words) == 2):
         glyphDictionary = {}
         glyphDictionary["fullName"] = fullName
         glyphDictionary["unicodeChar"] = words[0]
-        glyphDictionary["name"] = words[1]
-        glyphDictionary["baselineOffset"] = words[2][:-4]
+        glyphDictionary["name"] = words[1][:-4]
         glyphDictionaries.append(glyphDictionary)
 
 # Sort it!
@@ -77,9 +76,9 @@ for glyphDictionary in glyphDictionaries:
         # Import svg data into the glyph.
         glyph.importOutlines(svgFolder + glyphDictionary["fullName"])
 	
-        # Make the glyph rest on the baseline + offset from file name.
+        # Make the glyph rest on the baseline.
         ymin = glyph.boundingBox()[1]
-        glyph.transform([1, 0, 0, 1, 0, -ymin + int(glyphDictionary["baselineOffset"])])
+        glyph.transform([1, 0, 0, 1, 0, -ymin])
         
 # Run various fontforge methods.
 #font.canonicalContours()
