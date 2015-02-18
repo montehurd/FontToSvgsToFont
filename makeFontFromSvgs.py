@@ -243,6 +243,7 @@ file.close()
 
 
 # Header file for iOS
+glyphDictionaries.sort(key=lambda x: x['unicodeChar'])
 file = open(outputFolder + "WikiGlyph_Chars.h", "w")
 for glyphDictionary in glyphDictionaries:
         defineForGlyph = '\n#define {0:40} @"\\u{1}"'.format(glyphDictionary["name"], glyphDictionary["unicodeChar"].lower())
