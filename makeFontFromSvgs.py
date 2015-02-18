@@ -239,8 +239,22 @@ for glyphDictionary in glyphDictionaries:
 file.write("\n</body>\n</html>")
 
 file.close()
+
+
+
+# Header file for iOS
+file = open(outputFolder + "WikiGlyph_Chars.h", "w")
+for glyphDictionary in glyphDictionaries:
+        defineForGlyph = '\n#define {0:40} @"\\u{1}"'.format(glyphDictionary["name"], glyphDictionary["unicodeChar"].lower())
+        file.write(defineForGlyph)
+
+file.write('\n\n')
+file.close()
+
+
+
 font.close()
 
-print "Finished generating font.html and font.css files\n"
+print "Finished generating font.html, font.css and WikiGlyph_Chars.h files\n"
 
 
