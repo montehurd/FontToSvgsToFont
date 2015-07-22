@@ -49,7 +49,7 @@ Svg's are named according to following convention:
     UNICODE_CHAR GLYPH_NAME.svg
 
 
-Example: "e950 MY_GLYPH 150.svg"
+Example: "e950 MY_GLYPH.svg"
 
 
 This svg will be mapped to the font character e950 with glyph name "MY_GLYPH".
